@@ -61,6 +61,7 @@ class FoodFinderTableViewController: UITableViewController {
         print(foodStoreNames[indexPath.row])
         
         let optionMenu = UIAlertController(title: nil, message: "뭘 원하시나요?", preferredStyle:.actionSheet)
+        // call action
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let callAction = UIAlertAction(title: "전화걸기", style: .default){
                 (action: UIAlertAction) -> Void in
@@ -70,10 +71,17 @@ class FoodFinderTableViewController: UITableViewController {
                 alertMessage.addAction(okAction)
             self.present(alertMessage, animated: true)
             }
-            
+        
+        // check - in action
+        let checkinAction = UIAlertAction(title: "Check in", style: .default){
+            (action: UIAlertAction) -> Void in
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.accessoryType = .checkmark
+        }
+        
         optionMenu.addAction(cancelAction)
         optionMenu.addAction(callAction)
-        
+        optionMenu.addAction(checkinAction)
         present(optionMenu, animated: true)
     }
 
